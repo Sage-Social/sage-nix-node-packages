@@ -11,7 +11,7 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in {
-        legacyPackages = import ./. { inherit system; };
+        legacyPackages = import ./node-packages.nix { inherit system; };
       }
     );
 }
