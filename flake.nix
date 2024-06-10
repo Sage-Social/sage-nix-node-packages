@@ -10,7 +10,7 @@
     flake-utils.lib.eachDefaultSystem (system:
         let
             pkgs = import nixpkgs { inherit system; };
-            nodeEnv = pkgs.callPackage ./composition.nix {};
+            nodeEnv = pkgs.callPackage ./default.nix {};
             packageName = "nodePackages";
         in
         {
