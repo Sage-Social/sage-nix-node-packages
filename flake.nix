@@ -11,13 +11,13 @@
         let
             pkgs = import nixpkgs { inherit system; };
             nodeEnv = pkgs.callPackage ./composition.nix {};
-            packageName = "sageNodePackages";
+            packageName = "nodePackages";
         in
         {
             packages.${packageName} = nodeEnv.nodeDependencies;
             defaultPackage = self.packages.${system}.${packageName};
             devShells.default = pkgs.mkShell {
-                buildInputs = [ pkgs.nodejs_20 nodeEnv.nodeDependencies ];
+                buildInputs = [ pkgs.nodejs_20 self.packages.${system}.${packageName} ];
                 shellHook = ''
                 echo "Welcome to the development environment for sage-node-pkgs"
                 '';
