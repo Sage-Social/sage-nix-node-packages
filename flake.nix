@@ -13,7 +13,9 @@
             nodeEnv = pkgs.callPackage ./composition.nix {};
         in
         {
-            packages.default = nodeEnv.nodeDependencies;
+            packages = rec {
+                sageNodePackages = nodeEnv.nodeDependencies;
+            };
             devShells.default = pkgs.mkShell {
                 buildInputs = [ pkgs.nodejs_20 nodeEnv.nodeDependencies ];
                 shellHook = ''
