@@ -11,11 +11,11 @@
         let
             pkgs = import nixpkgs { inherit system; };
             nodeEnv = pkgs.callPackage ./composition.nix {};
+            packageName = "sageNodePackages";
         in
         {
-            packages = rec {
-                sageNodePackages = nodeEnv.nodeDependencies;
-            };
+            packages.${packageName} = nodeEnv.nodeDependencies;
+            defaultPackage = self.packages.${system}.${packageName};
             devShells.default = pkgs.mkShell {
                 buildInputs = [ pkgs.nodejs_20 nodeEnv.nodeDependencies ];
                 shellHook = ''
