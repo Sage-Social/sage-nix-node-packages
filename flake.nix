@@ -17,7 +17,7 @@
             packages.${packageName} = nodeEnv.nodeDependencies;
             defaultPackage = self.packages.${system}.${packageName};
             devShells.default = pkgs.mkShell {
-                buildInputs = [ pkgs.nodejs_20 self.packages.${system}.${packageName} ];
+                buildInputs = [ pkgs.nodejs_20 self.packages.${system}.${packageName} pkgs.node2nix];
                 shellHook = ''
                 echo "Welcome to the development environment for sage-node-pkgs"
                 '';
